@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Todo from "./components/Todo";
+import TodoList from "./components/TodoList";
 
 function App() {
+  let [todo, setTodo] = useState("");
+  let [todos, setTodos] = useState([]);
+
+  /*체크기능*/
+  const checkClick = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.number === id ? { ...todo, checked: !todo.checked } : todo
+      )
+    );
+  };
+
+  /*삭제기능 map안돌리고 바로 filter*/
+  const deletClick = (id) => {
+    setTodos(todos.filter((todo) => todo.number !== id));
+    /*filter로 돌려서 id가 같지않는것만 다시 setTodos로  변경해서 todos를 다시 돌려라*/
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <h1 style={{ color: "#FF7F50" }}>T</h1>
+        <h1>O</h1>
+        &nbsp;
+        <h1 style={{ color: "#FF7F50" }}>D</h1>
+        <h1>O</h1>
+        &nbsp;
+        <h1 style={{ color: "#FF7F50" }}>L</h1>
+        <h1>I</h1>
+        <h1>S</h1>
+        <h1>T</h1>
+      </div>
+
+      <Todo todo={todo} setTodo={setTodo} todos={todos} setTodos={setTodos} />
+      <TodoList todos={todos} checkClick={checkClick} deletClick={deletClick} />
     </div>
   );
 }
-
 export default App;
