@@ -30,12 +30,13 @@ const Form = styled.form`
 `;
 
 /*const가 아닌 let으로 쓰니깐 됨 ! */
-let nextid = 2;
+let nextid = 1;
 
 export default function Todo(props) {
   const change = (e) => {
     props.setTodo(e.target.value);
   };
+
   const submit = (e) => {
     e.preventDefault();
     if (props.todo === "") {
@@ -52,7 +53,6 @@ export default function Todo(props) {
       props.setTodo("");
       nextid++;
     }
-
     console.log(props.todos);
   };
 
@@ -63,6 +63,7 @@ export default function Todo(props) {
           value={props.todo}
           onChange={change}
           placeholder="Write your Todos..."
+          autoFocus
         />
         <button>ADD</button>
       </Form>

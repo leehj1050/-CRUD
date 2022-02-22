@@ -22,26 +22,20 @@ const TodoListWrap = styled.div`
     div {
       font-size: 1.5em;
       font-weight: 800;
-      input {
-        width: 100%;
-        height: 65%;
-        font-size: 18px;
-        border: none;
+      }
+      span {
+        cursor: pointer;
+        margin-right: 10px;
         &.checkedBox {
           text-decoration: line-through;
           color: lightgray;
         }
       }
-
-      span {
-        cursor: pointer;
-        margin-right: 10px;
-      }
     }
   }
 `;
 
-export default function TodoList({ todos, checkClick, deletClick }) {
+export default function TodoList({ todos, checkClick, delClick }) {
   return (
     <TodoListWrap>
       {todos.map((item, index) => {
@@ -49,11 +43,9 @@ export default function TodoList({ todos, checkClick, deletClick }) {
           <ul key={index}>
             <li>
               <div>
-                <input
-                  className={`${item.checked && "checkedBox"}`}
-                  defaultValue={item.text}
-                  disabled={item.checked ? true : false}
-                />
+                <span className={`${item.checked && "checkedBox"}`}>
+                  {item.text}
+                </span>
               </div>
 
               <div className="icons">
@@ -68,7 +60,7 @@ export default function TodoList({ todos, checkClick, deletClick }) {
                 <span>
                   <RiDeleteBinLine
                     onClick={() => {
-                      deletClick(item.number);
+                      delClick(item.number);
                     }}
                   />
                 </span>

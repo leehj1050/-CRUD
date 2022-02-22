@@ -17,8 +17,9 @@ function App() {
   };
 
   /*삭제기능 map안돌리고 바로 filter*/
-  const deletClick = (id) => {
-    setTodos(todos.filter((todo) => todo.number !== id));
+  const delClick = (id) => {
+    setTodos(todos.filter((todo) => todo.number != id));
+    console.log(todos);
     /*filter로 돌려서 id가 같지않는것만 다시 setTodos로  변경해서 todos를 다시 돌려라*/
   };
 
@@ -38,7 +39,12 @@ function App() {
       </div>
 
       <Todo todo={todo} setTodo={setTodo} todos={todos} setTodos={setTodos} />
-      <TodoList todos={todos} checkClick={checkClick} deletClick={deletClick} />
+      <TodoList
+        todos={todos}
+        setTodo={setTodo}
+        checkClick={checkClick}
+        delClick={delClick}
+      />
     </div>
   );
 }
