@@ -23,19 +23,27 @@ const TodoListWrap = styled.div`
       font-size: 1.5em;
       font-weight: 800;
       }
-      span {
-        cursor: pointer;
-        margin-right: 10px;
+      input{
+        padding-left:8px;
+        max-width: 280px;
+        height:35px;
+        font-size: 25px;
+        background-color: none;
         &.checkedBox {
           text-decoration: line-through;
           color: lightgray;
         }
       }
+      span {
+        cursor: pointer;
+        margin-right: 10px;
+       
+      }
     }
   }
 `;
 
-export default function TodoList({ todos, checkClick, delClick }) {
+export default function TodoList({ todos, checkClick, delClick, editClick }) {
   return (
     <TodoListWrap>
       {todos.map((item, index) => {
@@ -43,9 +51,15 @@ export default function TodoList({ todos, checkClick, delClick }) {
           <ul key={index}>
             <li>
               <div>
-                <span className={`${item.checked && "checkedBox"}`}>
-                  {item.text}
-                </span>
+                <input
+                  value={item.text}
+                  className={`${item.checked && "checkedBox"}`}
+                  onChange={(e) => {
+                    let value = e.target.value;
+                    editClick(value, item.number);
+                    console.log(value);
+                  }}
+                />
               </div>
 
               <div className="icons">

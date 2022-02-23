@@ -23,6 +23,12 @@ function App() {
     /*filter로 돌려서 id가 같지않는것만 다시 setTodos로  변경해서 todos를 다시 돌려라*/
   };
 
+  const editClick = (text, id) => {
+    setTodos(
+      todos.map((todo) => (todo.number === id ? { ...todo, text: text } : todo))
+    );
+  };
+
   return (
     <div className="App">
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -44,6 +50,7 @@ function App() {
         setTodo={setTodo}
         checkClick={checkClick}
         delClick={delClick}
+        editClick={editClick}
       />
     </div>
   );
