@@ -18,11 +18,12 @@ function App() {
 
   /*삭제기능 map안돌리고 바로 filter*/
   const delClick = (id) => {
-    setTodos(todos.filter((todo) => todo.number != id));
+    setTodos(todos.filter((todo) => todo.number !== id));
     console.log(todos);
     /*filter로 돌려서 id가 같지않는것만 다시 setTodos로  변경해서 todos를 다시 돌려라*/
   };
 
+  /*수정기능*/
   const editClick = (text, id) => {
     setTodos(
       todos.map((todo) => (todo.number === id ? { ...todo, text: text } : todo))

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { BiCheckCircle, BiEditAlt } from "react-icons/bi";
+import { BiCheckCircle } from "react-icons/bi";
 import { RiDeleteBinLine } from "react-icons/ri";
 
 const TodoListWrap = styled.div`
